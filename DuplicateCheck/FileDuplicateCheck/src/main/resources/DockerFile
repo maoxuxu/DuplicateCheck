@@ -1,0 +1,29 @@
+## 使用官方的 OpenJDK 作为基础镜像
+#FROM openjdk:8-jdk-alpine
+#
+## 设置工作目录
+#WORKDIR /app
+#
+## 复制 jar 文件到容器中
+#COPY target/your-app-name.jar app.jar
+#
+## 暴露服务端口
+#EXPOSE 8080
+#
+## 启动 Spring Boot 应用
+#ENTRYPOINT ["java", "-jar", "app.jar"]
+
+
+
+FROM java:8
+
+
+#VOLUME 指定临时文件目录为/tmp，在主机/var/lib/docker目录下创建了一个临时文件并链接到容器的/tmp
+VOLUME /tmp
+
+#将jar包添加到容器中并更名为zzyy_docker.jar
+ADD henu-0.0.1-SNAPSHOT-encrypted.jar znzd.jar
+
+#运行jar包
+#ENTRYPOINT ["java", "-javaagent:henu-0.0.1-SNAPSHOT-encrypted.jar", "-jar", "znzd.jar"]
+RUN bash -c 'touch /znzd.jar'...
